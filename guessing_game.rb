@@ -7,8 +7,7 @@ play = true
 while play == true
   if game == 'y'
     puts "How many numbers do you want to use?"
-    num = gets.chomp
-    num = num.to_i
+    num = gets.chomp.to_i
   else
     puts "Ok, see ya!"
     exit!
@@ -17,21 +16,18 @@ while play == true
   new_num = rand(num)
 
   puts "OK, I'm thinking of a number between 1 and #{num}:"
-  guess = gets.chomp
-  guess = guess.to_i
-
+  guess = gets.chomp.to_i
+  
   i = 1
 
   while guess != new_num
     i += 1
     if guess > new_num
       puts "Lower..."
-      guess = gets.chomp
-      guess = guess.to_i
+      guess = gets.chomp.to_i
     elsif guess < new_num
       puts "Umm...higher"
-      guess = gets.chomp
-      guess = guess.to_i
+      guess = gets.chomp.to_i
     end
   end
 
@@ -39,9 +35,8 @@ while play == true
   puts i > 1 ? "You took #{i} guesses." : "First try!"
   
   puts "Wanna play again?  (Y)es/(N)o"
-  play = gets.chomp
-  play.downcase!
-
+  play = gets.chomp.downcase
+  
   if play == "y"
     play = true
   else
