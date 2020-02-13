@@ -1,11 +1,11 @@
 require "pry"
 puts "Wanna play a guessing game? (Y)es/(N)o"
-game = gets.chomp.downcase
+game = gets.chomp.downcase.chars.to_a
 
 play = true
 
 while play == true
-  if game == 'y'
+  if game[0] == 'y'
     puts "How many numbers do you want to use?"
     num = gets.chomp.to_i
   else
@@ -35,9 +35,9 @@ while play == true
   puts i > 1 ? "You took #{i} guesses." : "First try!"
   
   puts "Wanna play again?  (Y)es/(N)o"
-  play = gets.chomp.downcase
+  play = gets.chomp.downcase.chars.to_a
   
-  if play == "y"
+  if play[0] == "y"
     play = true
   else
     puts "OK, see ya!"
