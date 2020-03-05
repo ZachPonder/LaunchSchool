@@ -1,4 +1,3 @@
-require "pry"
 puts "Wanna play a guessing game? (Y)es/(N)o"
 game = gets.chomp.downcase.chars.to_a
 
