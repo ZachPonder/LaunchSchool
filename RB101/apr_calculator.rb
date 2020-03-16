@@ -21,7 +21,7 @@ puts MESSAGES['welcome']
 puts
 
 continue = true
-while continue == true
+while continue
   puts MESSAGES['loan_amt']
   loan_amt = gets.chomp
   loop do
