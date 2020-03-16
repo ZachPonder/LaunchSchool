@@ -1,0 +1,5 @@
+welcome: "Welcome to APR Calculator!"
+loan_amt: "Enter the loan amount:"
+apr: "Enter the APR % (e.g. '5' or '7.25'):"
+duration: "Enter the length of the loan in months:"
+valid_num: "Please enter a valid number:"
