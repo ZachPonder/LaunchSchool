@@ -20,37 +20,48 @@ end
 puts MESSAGES['welcome']
 puts
 
-puts MESSAGES['loan_amt']
-loan_amt = gets.chomp
-loop do
-  break if valid_num?(loan_amt)
-  puts
-  puts MESSAGES['valid_num']
+continue = true
+while continue == true
+  puts MESSAGES['loan_amt']
   loan_amt = gets.chomp
-end
+  loop do
+    break if valid_num?(loan_amt)
+    puts
+    puts MESSAGES['valid_num']
+    loan_amt = gets.chomp
+  end
 
-puts
-puts MESSAGES['apr']
-apr = gets.chomp
-loop do
-  break if valid_num?(apr)
   puts
-  puts MESSAGES['valid_num']
+  puts MESSAGES['apr']
   apr = gets.chomp
-end
+  loop do
+    break if valid_num?(apr)
+    puts
+    puts MESSAGES['valid_num']
+    apr = gets.chomp
+  end
 
-puts
-puts MESSAGES['duration']
-months = gets.chomp
-loop do
-  break if valid_num?(months)
   puts
-  puts MESSAGES['valid_num']
+  puts MESSAGES['duration']
   months = gets.chomp
+  loop do
+    break if valid_num?(months)
+    puts
+    puts MESSAGES['valid_num']
+    months = gets.chomp
+  end
+
+  monthly_rate = convert_monthly_rate(apr)
+  payment = monthly_payment(loan_amt, monthly_rate, months)
+
+  puts
+  puts "Your monthly payment is $#{payment.round(2)}"
+
+  puts
+  puts MESSAGES['again']
+  again = gets.chomp.chr.downcase
+  if again == 'n'
+    puts MESSAGES['thanks']
+    continue = false
+  end
 end
-
-monthly_rate = convert_monthly_rate(apr)
-payment = monthly_payment(loan_amt, monthly_rate, months)
-
-puts
-puts "Your monthly payment is $#{payment.round(2)}"
