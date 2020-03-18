@@ -61,10 +61,17 @@ while continue
 
   puts
   puts MESSAGES['again']
-  again = gets.chomp.chr.downcase
-  if again == 'n'
-    puts
-    puts MESSAGES['thanks']
-    continue = false
+  again = gets.chomp.downcase
+  loop do
+    if again == 'n'
+      puts
+      puts MESSAGES['thanks']
+      continue = false
+    elsif again != 'y'
+      puts
+      puts MESSAGES['valid_response']
+    end
+    break if again == 'y' || again == 'n'
+    again = gets.chomp.downcase
   end
 end
