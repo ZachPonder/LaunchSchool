@@ -3,11 +3,11 @@ MESSAGES = YAML.load_file('apr_messages.yml')
 
 def valid_num?(number)
   if number.include?('.') && number.end_with?('0')
-    number.to_f.to_s == number.delete_suffix('0')
+    number.to_f.to_s == number.delete_suffix('0') && number.to_f > 0
   elsif number.include?('.')
-    number.to_f.to_s == number
+    number.to_f.to_s == number && number.to_f > 0
   else
-    number.to_i.to_s == number
+    number.to_i.to_s == number && number.to_i > 0
   end
 end
 
