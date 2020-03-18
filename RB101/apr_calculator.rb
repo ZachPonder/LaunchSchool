@@ -20,10 +20,10 @@ def monthly_payment(loan_amt, monthly_rate, months)
 end
 
 puts MESSAGES['welcome']
-puts
 
 continue = true
 while continue
+  puts
   puts MESSAGES['loan_amt']
   loan_amt = gets.chomp
   loop do
@@ -63,6 +63,7 @@ while continue
   puts MESSAGES['again']
   again = gets.chomp.chr.downcase
   if again == 'n'
+    puts
     puts MESSAGES['thanks']
     continue = false
   end
