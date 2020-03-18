@@ -19,10 +19,11 @@ def monthly_payment(loan_amt, monthly_rate, months)
   loan_amt.to_f * (monthly_rate / (1 - (1 + monthly_rate)**(-months.to_f)))
 end
 
-puts MESSAGES['welcome']
-
 continue = true
 while continue
+  system("clear")
+  puts MESSAGES['welcome']
+
   puts
   puts MESSAGES['loan_amt']
   loan_amt = gets.chomp
@@ -64,9 +65,10 @@ while continue
   again = gets.chomp.downcase
   loop do
     if again == 'n'
-      puts
+      system("clear")
       puts MESSAGES['thanks']
-      continue = false
+      puts
+      continue = false      
     elsif again != 'y'
       puts
       puts MESSAGES['valid_response']
