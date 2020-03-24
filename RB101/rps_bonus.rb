@@ -16,9 +16,9 @@ end
 def win_lose_draw?(w, l, d)
   prompt("Your record is #{w} wins, #{l} losses, and #{d} ties")
   if w > l
-    prompt ('You are the champion!')
+    prompt('You are the champion!')
   else
-    prompt ('Better luck next time!')
+    prompt('Better luck next time!')
   end
 end
 
@@ -49,7 +49,7 @@ while continue
   system('clear')
 
   prompt("Best of 5")
-  
+
   until wins + losses == 5 do
     player_choice = nil
     computer_choice = VALID_CHOICES.to_a.sample[1]
@@ -62,7 +62,7 @@ while continue
         puts "--> '#{abbr}' for '#{choices}'"
       end
       player_choice = gets.chomp.downcase.to_sym
-      break if VALID_CHOICES.has_key?(player_choice)
+      break if VALID_CHOICES.key?(player_choice)
       prompt("Please make a valid selection")
     end
 
