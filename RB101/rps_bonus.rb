@@ -1,5 +1,42 @@
+require 'io/console'
+
 def prompt(message)
   puts "=> #{message}"
+end
+
+def round_winner(player_val, player_key, computer)
+  if player_val == computer
+    prompt("It's a tie!")
+  elsif player_key.include?(computer)
+    prompt("You won!")
+  else
+    prompt("Computer won!")
+  end
+end
+
+def win_loss_counter(wins_array, player_val, player_key, computer)
+  if player_val == computer
+    wins_array[2] += 1
+  elsif player_key.include?(computer)
+    wins_array[0] += 1
+  else
+    wins_array[1] += 1
+  end
+end
+
+def overall_winner(win, lose, draw)
+  prompt("Your record is #{win} wins, #{lose} losses, and #{draw} ties...")
+  if win > lose
+    prompt('You are the champion!')
+  else
+    prompt('Better luck next time!')
+  end
+end
+
+def continue_game
+  puts "Press any Key"
+  STDIN.getch
+  puts
 end
 
 def play_again?
@@ -11,15 +48,6 @@ def play_again?
     break if response == 'y' || response == 'n'
   end
   response == 'y'
-end
-
-def win_lose_draw?(w, l, d)
-  prompt("Your record is #{w} wins, #{l} losses, and #{d} ties")
-  if w > l
-    prompt('You are the champion!')
-  else
-    prompt('Better luck next time!')
-  end
 end
 
 VALID_CHOICES = {
@@ -41,16 +69,14 @@ PLAYER_WINS = {
 continue = true
 
 while continue
-  wins = 0
-  losses = 0
-  ties = 0
+  win_lose_draw = [0, 0, 0]
   rounds = 1
 
   system('clear')
 
   prompt("Best of 5")
 
-  until wins + losses == 5 do
+  until win_lose_draw[0] == 3 || win_lose_draw[1] == 3
     player_choice = nil
     computer_choice = VALID_CHOICES.to_a.sample[1]
     prompt("Round #{rounds}...Fight!")
@@ -67,25 +93,22 @@ while continue
     end
 
     puts
-    prompt("You chose '#{VALID_CHOICES[player_choice]}' and Computer chose '#{computer_choice}'")
+    prompt("You chose '#{VALID_CHOICES[player_choice]}' "\
+           "and Computer chose '#{computer_choice}'")
 
-    if VALID_CHOICES[player_choice] == computer_choice
-      prompt("It's a tie!")
-      ties += 1
-    elsif PLAYER_WINS[player_choice][0..1].include?(computer_choice)
-      prompt('You won!')
-      wins += 1
-    else
-      prompt('Computer won!')
-      losses += 1
-    end
+    round_winner(VALID_CHOICES[player_choice], PLAYER_WINS[player_choice],
+                 computer_choice)
+
+    win_loss_counter(win_lose_draw, VALID_CHOICES[player_choice],
+                     PLAYER_WINS[player_choice], computer_choice)
 
     puts
     rounds += 1
-
+    continue_game
+    system('clear')
   end
 
-  win_lose_draw?(wins, losses, ties)
+  overall_winner(win_lose_draw[0], win_lose_draw[1], win_lose_draw[2])
 
   if play_again? == false
     system('clear')
