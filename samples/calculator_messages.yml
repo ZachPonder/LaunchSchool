@@ -1,0 +1,7 @@
+
+num_a: "Enter the first number:"
+num_b: "Enter the second number:"
+valid_false: "Please use floats or integers."
+div_zero: "Can't divide by zero"
+repeat: "Would you like to perform another calculation? (Y/N)"
+
